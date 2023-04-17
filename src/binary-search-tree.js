@@ -16,20 +16,15 @@ class BinarySearchTree {
   }
 
   add(value) {
-    this.data = addValue(this.data, value);
-    function addValue(node, value) {
-      if (!node) {
-        return new Node(value);
-      }
+    this.data = addNode(this.data, value)
 
-      if (value === node.data) {
-        return Node;
-      }
-
-      if (node.data > value) {
-        node.left = addValue(node.left, value);
+    function addNode(node, value) {
+      if(!node) return new Node(value);
+      if (node.data === value) return node;
+      if (node.data < value) {
+        node.right = addNode(node.right, value);
       } else {
-        node.right = addValue(node.right, value);
+        node.left = addNode(node.left, value);
       }
       return node;
     }
